@@ -6,29 +6,33 @@ import { CharacterSide } from './CharacterSide';
   providedIn: 'root'
 })
 export class CharactersService {
-  private allCharacters = [
+  private characters = [
     new Character('Luke SkyWalker'),
     new Character('Darth Vader')
   ];
 
   public getFilteredCharacters(chosenTab: CharacterSide) {
     if (chosenTab === CharacterSide.All) {
-      return this.allCharacters;
+      return this.characters;
     }
-    return this.allCharacters.filter(character => character.side === chosenTab);
+    return this.characters.filter(character => character.side === chosenTab);
   }
 
   public changeCharacterSide(
     character: Character,
     newSide: CharacterSide
   ): Boolean {
-    const foundCharacter = this.allCharacters.find(char => char === character);
+    const foundCharacter = this.characters.find(char => char === character);
     if (foundCharacter) {
       foundCharacter.side = newSide;
       return true;
     } else {
       return false;
     }
+  }
+
+  public addCharacter(name: string, side: CharacterSide) {
+    this.characters.push(new Character(name, side));
   }
 
   constructor() {}

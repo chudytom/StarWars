@@ -1,5 +1,5 @@
 export enum CharacterSide {
-  All,
+  All = 0,
   Light,
   Dark
 }
