@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../Character';
 import { CharacterSide } from '../CharacterSide';
+import { CharactersService } from '../characters.service';
 
 @Component({
   selector: 'app-tabs',
@@ -9,25 +10,17 @@ import { CharacterSide } from '../CharacterSide';
 })
 export class TabsComponent implements OnInit {
   public CharacterSide = CharacterSide;
-  public allCharacters = [
-    new Character('Luke SkyWalker'),
-    new Character('Darth Vader')
-  ];
+  public characters: Character[];
   public chosenTab = CharacterSide.All;
-  constructor() {}
+  constructor(private characterService: CharactersService) {}
 
   ngOnInit() {}
 
-  public getFilteredCharacters() {
-    if (this.chosenTab === CharacterSide.All) {
-      return this.allCharacters;
-    }
-    return this.allCharacters.filter(
-      character => character.side === this.chosenTab
-    );
-  }
-
   public onTabChosen(side: CharacterSide) {
     this.chosenTab = side;
+  }
+
+  private getCharacters(): Character[] {
+    return this.characterService.getFilteredCharacters(this.chosenTab);
   }
 }
