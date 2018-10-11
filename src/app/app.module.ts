@@ -8,6 +8,8 @@ import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
 import { CharactersService } from './characters.service';
 import { CreateCharacterComponent } from './create-character/create-character.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,10 @@ import { CreateCharacterComponent } from './create-character/create-character.co
     TabsComponent,
     ListComponent,
     ItemComponent,
-    CreateCharacterComponent
+    CreateCharacterComponent,
+    HeaderComponent
   ],
-  imports: [BrowserModule, FormsModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [CharactersService],
   bootstrap: [AppComponent]
 })

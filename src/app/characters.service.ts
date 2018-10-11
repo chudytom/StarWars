@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Character } from './Character';
 import { CharacterSide } from './CharacterSide';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharactersService {
+  public charactersChanged = new Subject<void>();
   private characters = [
     new Character('Luke SkyWalker'),
     new Character('Darth Vader')
@@ -25,6 +27,7 @@ export class CharactersService {
     const foundCharacter = this.characters.find(char => char === character);
     if (foundCharacter) {
       foundCharacter.side = newSide;
+      this.charactersChanged.next();
       return true;
     } else {
       return false;

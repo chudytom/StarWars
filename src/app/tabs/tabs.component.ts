@@ -9,18 +9,8 @@ import { CharactersService } from '../characters.service';
   styleUrls: ['./tabs.component.css']
 })
 export class TabsComponent implements OnInit {
-  public CharacterSide = CharacterSide;
-  public characters: Character[];
-  public chosenTab = CharacterSide.All;
-  constructor(private characterService: CharactersService) {}
+  constructor() {}
 
   ngOnInit() {}
 
-  public onTabChosen(side: CharacterSide) {
-    this.chosenTab = side;
-  }
-
-  private getCharacters(): Character[] {
-    return this.characterService.getFilteredCharacters(this.chosenTab);
-  }
 }
